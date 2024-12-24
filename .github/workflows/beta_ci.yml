@@ -1,4 +1,4 @@
-name: Pilipala Beta
+name: PiliPala Beta
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   update_version:
-    name: Read and update version
+    name: Read 和 update version
     runs-on: ubuntu-latest
 
     outputs:
