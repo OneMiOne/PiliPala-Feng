@@ -62,7 +62,7 @@ class _PrivacySettingState extends State<PrivacySetting> {
               MemberHttp.cookieToKey();
             },
             dense: false,
-            title: Text('刷新access_key', style: titleStyle),
+            title: Text('刷新Access_Key', style: titleStyle),
           ),
         ],
       ),
