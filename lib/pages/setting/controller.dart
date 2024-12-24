@@ -61,7 +61,7 @@ class SettingController extends GetxController {
             ),
             TextButton(
               onPressed: () async {
-                // 清空cookie
+                // 清空Cookie
                 await Request.cookieManager.cookieJar.deleteAll();
                 Request.dio.options.headers['cookie'] = '';
 
