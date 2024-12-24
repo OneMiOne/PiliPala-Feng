@@ -71,7 +71,7 @@ class _AboutPageState extends State<AboutPage> {
                             children: [
                               ListTile(
                                 onTap: () => _aboutController.githubRelease(),
-                                title: const Text('Github下载'),
+                                title: const Text('GitHub下载'),
                               ),
                               ListTile(
                                 onTap: () => _aboutController.panDownload(),
@@ -132,7 +132,7 @@ class _AboutPageState extends State<AboutPage> {
               onTap: () => _aboutController.panDownload(),
               title: const Text('网盘下载'),
               trailing: Text(
-                '提取码：pili',
+                '提取码：Pili',
                 style: TextStyle(
                   fontSize: 13,
                   color: Theme.of(context).colorScheme.outline,
@@ -270,7 +270,7 @@ class AboutController extends GetxController {
     Utils.matchVersion(data);
   }
 
-  // 跳转github
+  // 跳转GitHub
   githubUrl() {
     launchUrl(
       Uri.parse('https://github.com/guozhigq/pilipala'),
@@ -288,10 +288,10 @@ class AboutController extends GetxController {
   // 从网盘下载
   panDownload() {
     Clipboard.setData(
-      const ClipboardData(text: 'pili'),
+      const ClipboardData(text: 'Pili'),
     );
     SmartDialog.showToast(
-      '已复制提取码：pili',
+      '已复制提取码：Pili',
       displayTime: const Duration(milliseconds: 500),
     ).then(
       (value) => launchUrl(
@@ -310,7 +310,7 @@ class AboutController extends GetxController {
     );
   }
 
-  // qq频道
+  // QQ频道
   qqChanel() {
     Clipboard.setData(
       const ClipboardData(text: '616150809'),
@@ -318,7 +318,7 @@ class AboutController extends GetxController {
     SmartDialog.showToast('已复制QQ群号');
   }
 
-  // tg频道
+  // TG频道
   tgChanel() {
     Clipboard.setData(
       const ClipboardData(text: 'https://t.me/+lm_oOVmF0RJiODk1'),
