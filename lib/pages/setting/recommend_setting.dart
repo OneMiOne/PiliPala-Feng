@@ -67,7 +67,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
             dense: false,
             title: Text('首页推荐类型', style: titleStyle),
             subtitle: Text(
-              '当前使用「$defaultRcmdType端」推荐¹',
+              '当前使用「$defaultRcmdType端」推荐-1',
               style: subTitleStyle,
             ),
             onTap: () async {
@@ -98,7 +98,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
                           return AlertDialog(
                             title: const Text('提示'),
                             content: const Text(
-                                '使用app端推荐需获取access_key，有小概率触发风控导致账号退出（在官方版本app重新登录即可解除），是否继续？'),
+                                '使用App端推荐需获取Access_Key，有小概率触发风控导致账号退出（在官方版本App重新登录即可解除），是否继续？'),
                             actions: [
                               TextButton(
                                 onPressed: () {
@@ -130,7 +130,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
           ),
           const SetSwitchItem(
             title: '推荐动态',
-            subTitle: '是否在推荐内容中展示动态(仅app端)',
+            subTitle: '是否在推荐内容中展示动态(仅App端)',
             setKey: SettingBoxKey.enableRcmdDynamic,
             defaultVal: true,
           ),
@@ -146,7 +146,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
             dense: false,
             title: Text('点赞率过滤', style: titleStyle),
             subtitle: Text(
-              '过滤掉点赞数/播放量「小于$minLikeRatioForRecommend%」的推荐视频(仅web端)',
+              '过滤掉点赞数/播放量「小于$minLikeRatioForRecommend%」的推荐视频(仅Web端)',
               style: subTitleStyle,
             ),
             onTap: () async {
@@ -156,7 +156,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
                   return SelectDialog<int>(
                       title: '选择点赞率（0即不过滤）',
                       value: minLikeRatioForRecommend,
-                      values: [0, 1, 2, 3, 4].map((e) {
+                      values: [0, 1, 2， 3, 4].map((e) {
                         return {'title': '$e %', 'value': e};
                       }).toList());
                 },
@@ -197,7 +197,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
             },
           ),
           SetSwitchItem(
-            title: '已关注Up豁免推荐过滤',
+            title: '已关注UP豁免推荐过滤',
             subTitle: '推荐中已关注用户发布的内容不会被过滤',
             setKey: SettingBoxKey.exemptFilterForFollowed,
             defaultVal: true,
@@ -205,7 +205,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
           ),
           // ListTile(
           //   dense: false,
-          //   title: Text('按比例过滤未关注Up', style: titleStyle),
+          //   title: Text('按比例过滤未关注UP', style: titleStyle),
           //   subtitle: Text(
           //     '滤除推荐中占比「$filterUnfollowedRatio%」的未关注用户发布的内容',
           //     style: subTitleStyle,
@@ -233,7 +233,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
           // ),
           SetSwitchItem(
             title: '过滤器也应用于相关视频',
-            subTitle: '视频详情页的相关视频也进行过滤²',
+            subTitle: '视频详情页的相关视频也进行过滤-2'，
             setKey: SettingBoxKey.applyFilterToRelatedVideos,
             defaultVal: true,
             callFn: (_) => {RecommendFilter.update},
@@ -241,12 +241,12 @@ class _RecommendSettingState extends State<RecommendSetting> {
           ListTile(
             dense: true,
             subtitle: Text(
-              '¹ 若默认web端推荐不太符合预期，可尝试切换至app端。\n'
-              '¹ 选择“模拟未登录(notLogin)”，将以空的key请求推荐接口，但播放页仍会携带用户信息，保证账号能正常记录进度、点赞投币等。\n\n'
-              '² 由于接口未提供关注信息，无法豁免相关视频中的已关注Up。\n\n'
-              '* 其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
-              '* 设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
-              '* 后续可能会增加更多过滤条件，敬请期待。',
+              '1-若默认Web端推荐不太符合预期，可尝试切换至App端。\n'
+              '1-选择“模拟未登录(NOTLogin)”，将以空的Key请求推荐接口，但播放页仍会携带用户信息，保证账号能正常记录进度、点赞投币等。\n\n'
+              '2-由于接口未提供关注信息，无法豁免相关视频中的已关注UP。\n\n'
+              '3-其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
+              '3-设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
+              '3-后续可能会增加更多过滤条件，敬请期待。',
               style: Theme.of(context)
                   .textTheme
                   .labelSmall!
