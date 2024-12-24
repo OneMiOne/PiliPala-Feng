@@ -282,7 +282,7 @@ class _StyleSettingState extends State<StyleSetting> {
           ListTile(
             dense: false,
             onTap: () => Get.toNamed('/tabbarSetting'),
-            title: Text('首页tabbar', style: titleStyle),
+            title: Text('首页TabBar', style: titleStyle),
           ),
           ListTile(
             dense: false,
