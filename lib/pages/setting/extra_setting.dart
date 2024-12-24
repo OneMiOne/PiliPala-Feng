@@ -37,7 +37,7 @@ class _ExtraSettingState extends State<ExtraSetting> {
       setting.put(SettingBoxKey.replySortType, 0);
       defaultReplySort = 0;
     }
-    // 优先展示全部动态 all
+    // 优先展示全部动态 All
     defaultDynamicType =
         setting.get(SettingBoxKey.defaultDynamicType, defaultValue: 0);
     enableSystemProxy =
@@ -168,8 +168,8 @@ class _ExtraSettingState extends State<ExtraSetting> {
             defaultVal: false,
           ),
           const SetSwitchItem(
-            title: '启用ai总结',
-            subTitle: '视频详情页开启ai总结',
+            title: '启用AI总结',
+            subTitle: '视频详情页开启AI总结',
             setKey: SettingBoxKey.enableAi,
             defaultVal: true,
           ),
@@ -235,7 +235,7 @@ class _ExtraSettingState extends State<ExtraSetting> {
             enableFeedback: true,
             onTap: () => twoFADialog(),
             title: Text('设置代理', style: titleStyle),
-            subtitle: Text('设置代理 host:port', style: subTitleStyle),
+            subtitle: Text('设置代理 Host:Port', style: subTitleStyle),
             trailing: Transform.scale(
               alignment: Alignment.centerRight,
               scale: 0.8,
