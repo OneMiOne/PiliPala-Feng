@@ -67,7 +67,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
             dense: false,
             title: Text('首页推荐类型', style: titleStyle),
             subtitle: Text(
-              '当前使用「$defaultRcmdType端」推荐-1',
+              '当前使用「$defaultRcmdType端」推荐①',
               style: subTitleStyle,
             ),
             onTap: () async {
@@ -233,7 +233,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
           // ),
           SetSwitchItem(
             title: '过滤器也应用于相关视频',
-            subTitle: '视频详情页的相关视频也进行过滤-2',
+            subTitle: '视频详情页的相关视频也进行过滤②',
             setKey: SettingBoxKey.applyFilterToRelatedVideos,
             defaultVal: true,
             callFn: (_) => {RecommendFilter.update},
@@ -241,12 +241,12 @@ class _RecommendSettingState extends State<RecommendSetting> {
           ListTile(
             dense: true,
             subtitle: Text(
-              '1-若默认Web端推荐不太符合预期，可尝试切换至App端。\n'
-              '1-选择“模拟未登录(NOTLogin)”，将以空的Key请求推荐接口，但播放页仍会携带用户信息，保证账号能正常记录进度、点赞投币等。\n\n'
-              '2-由于接口未提供关注信息，无法豁免相关视频中的已关注UP。\n\n'
-              '3-其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
-              '3-设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
-              '3-后续可能会增加更多过滤条件，敬请期待。',
+              '①若默认Web端推荐不太符合预期，可尝试切换至App端。\n'
+              '①选择“模拟未登录(NotLogin)”，将以空的Key请求推荐接口，但播放页仍会携带用户信息，保证账号能正常记录进度、点赞投币等。\n\n'
+              '②由于接口未提供关注信息，无法豁免相关视频中的已关注UP。\n\n'
+              '③其它（如热门视频、手动搜索、链接跳转等）均不受过滤器影响。\n'
+              '③设定较严苛的条件可导致推荐项数锐减或多次请求，请酌情选择。\n'
+              '③后续可能会增加更多过滤条件，敬请期待。',
               style: Theme.of(context)
                   .textTheme
                   .labelSmall!
