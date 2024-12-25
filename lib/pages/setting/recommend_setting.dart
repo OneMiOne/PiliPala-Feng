@@ -85,7 +85,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
               );
               if (result != null) {
                 if (result == 'app') {
-                  // app端推荐需要access_key
+                  // App端推荐需要Access_Key
                   if (accessKeyInfo == null) {
                     if (!userLogin) {
                       SmartDialog.showToast('请先登录');
@@ -156,7 +156,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
                   return SelectDialog<int>(
                       title: '选择点赞率（0即不过滤）',
                       value: minLikeRatioForRecommend,
-                      values: [0, 1, 2， 3, 4].map((e) {
+                      values: [0, 1, 2, 3, 4].map((e) {
                         return {'title': '$e %', 'value': e};
                       }).toList());
                 },
@@ -233,7 +233,7 @@ class _RecommendSettingState extends State<RecommendSetting> {
           // ),
           SetSwitchItem(
             title: '过滤器也应用于相关视频',
-            subTitle: '视频详情页的相关视频也进行过滤-2'，
+            subTitle: '视频详情页的相关视频也进行过滤-2',
             setKey: SettingBoxKey.applyFilterToRelatedVideos,
             defaultVal: true,
             callFn: (_) => {RecommendFilter.update},
