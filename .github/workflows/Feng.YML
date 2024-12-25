@@ -1,0 +1,88 @@
+name: Flutter CI Build
+
+on: 
+  workflow_dispatch:
+    inputs:
+      java_version:
+        required: true
+        default: '17'
+      flutter_version:
+        required: true
+        default: '3.x'
+      flutter_channel:
+        required: true
+        default: 'stable' # or: 'beta', 'dev' or 'master'
+      flutter_type:
+        required: true
+        default: 'apk'
+      flutter_build_params:
+        required: false
+        default: '--release --target-platform=android-arm64'
+      repo:
+        required: true
+      ref:
+        required: false
+        default: ''
+      submodules:
+        required: false
+        default: 'false'
+      name_pattern:
+        required: false
+        default: 'build/**/release/*arm64*.apk'
+
+
+jobs:
+  flutter:
+    name: Flutter CI Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.inputs.repo }}
+          ref: ${{ github.event.inputs.ref }}
+          fetch-depth: 1 
+          
+      - name: Checkout submodules
+        if: ${{ github.event.inputs.submodules != 'false' }}
+        run: git submodule update --init --recursive
+
+      - name: Prepare Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: ${{ github.event.inputs.java_version }}
+          java-package: jdk+fx
+          cache: 'gradle'
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v4
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-cache-${{ github.event.inputs.flutter_version }}-${{ github.event.inputs.flutter_channel }}
+          restore-keys: |
+            ${{ runner.OS }}-flutter-cache-
+      - uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{ github.event.inputs.flutter_version }}
+          channel: ${{ github.event.inputs.flutter_channel }} # or: 'stable', 'beta', 'dev' or 'master'
+      - name: Decode keystore and create jks and properties file
+        if: ${{ github.event.inputs.flutter_type == 'apk' }}
+        run: |
+          echo "${{ secrets.SIGN_FILE_BASE64 }}" | base64 -di > android/app/keystore.jks
+          echo "storeFile=keystore.jks" >> android/key.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+
+      - name: Build project
+        run: |
+          flutter config --build-dir=build/outputs
+          flutter pub get
+          flutter build ${{ github.event.inputs.flutter_type }} ${{ github.event.inputs.flutter_build_params }}
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter_build
+          path: ${{ inputs.name_pattern }}
