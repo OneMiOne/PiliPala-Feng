@@ -1,0 +1,39 @@
+name: Build Flutter Android APK (ARM64)
+
+on:
+  workflow_dispatch: # 手动触发工作流
+
+jobs:
+  build:
+    name: Build Android APK (ARM64)
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 设置 Flutter 环境
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '<stable>' # 使用 stable 版本，或指定版本号
+
+      # 运行 flutter pub get 获取依赖
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 强制解决依赖冲突
+      - name: Resolve dependency issues
+        run: flutter pub upgrade --force
+
+      # 构建适配 ARM64 的 Android APK 文件
+      - name: Build APK (ARM64)
+        run: flutter build apk --target-platform android-arm64 --no-shrink --debug
+
+      # 输出 APK 文件位置
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-arm64-debug.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
